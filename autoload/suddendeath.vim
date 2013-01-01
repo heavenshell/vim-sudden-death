@@ -25,13 +25,21 @@ function! s:draw(text)
   let &g:paste = paste
 endfunction
 
+function! s:get_text_from_register()
+  normal! gv"zy
+  let text = @z
+
+  return text
+endfunction
+
 function! suddendeath#echo()
-  let text = getline('.')
+  let text = s:get_text_from_register()
+
   echo s:create(text)
 endfunction
 
 function! suddendeath#create()
-  let text = getline('.')
+  let text = s:get_text_from_register()
   call s:draw(text)
 endfunction
 
