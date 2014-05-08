@@ -7,9 +7,10 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! s:create(text)
-  let width = strlen(substitute(substitute(a:text, "[ -~｡-ﾟ]", 's', 'g'), "[^s]", 'mm', 'g')) / 2 + 2
+  let text = substitute(a:text, "\n", '', 'g')
+  let width = strlen(substitute(substitute(text, "[ -~｡-ﾟ]", 's', 'g'), "[^s]", 'mm', 'g')) / 2 + 2
   let top = '＿' . join(map(range(width), '"人"'),'') . "＿\n"
-  let content = '＞　' . a:text . "　＜\n"
+  let content = '＞　' . text . "　＜\n"
   let bottom = '￣' . join(map(range(width), '"Ｙ"'),'') . '￣'
 
   return top . content . bottom
